@@ -1,5 +1,5 @@
-var Sib = require('sib-api-v3-sdk');
-var defaultClient = Sib.ApiClient.instance;
+// var Sib = require('sib-api-v3-sdk');
+// var defaultClient = Sib.ApiClient.instance;
 
 const express = require('express')
 const app = express();
@@ -20,20 +20,8 @@ const schedule = require('node-schedule');
 var request = require('request');
 
 
-
-
-
-
-const MAIL_FROM = process.env.MAIL_FROM;
-const MAIL_HOST = process.env.MAIL_HOST;
-const MAIL_PORT = process.env.MAIL_PORT;
-const MAIL_USER = process.env.MAIL_USER;
-const MAIL_PASS = process.env.MAIL_PASS;
-
-
 const bodyParser = require("body-parser")
 const cors = require("cors")
-const nodemailer = require("nodemailer")
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
@@ -45,6 +33,46 @@ app.use(cors({
 }));
 
 app.use(express.static('public')) 
+
+
+
+
+
+
+
+const SibApiV3Sdk = require('sib-api-v3-sdk');
+const defaultClient = SibApiV3Sdk.ApiClient.instance;
+
+let apiKey = defaultClient.authentications['api-key'];
+apiKey.apiKey = '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';
+
+let apiInstance = new SibApiV3Sdk.TransactionalSMSApi();
+
+let sendTransacSms = new SibApiV3Sdk.SendTransacSms();
+
+sendTransacSms = {
+    "sender": "AhmedFayaz",
+     "recipient": "971582155414",
+     "content": "Hello this is a test email"
+};
+
+apiInstance.sendTransacSms(sendTransacSms).then(function(data) {
+  console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+}, function(error) {
+  console.error(error);
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 var PORT = process.env.PORT || 4000;
