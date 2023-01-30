@@ -1,23 +1,12 @@
-// var Sib = require('sib-api-v3-sdk');
-// var defaultClient = Sib.ApiClient.instance;
+
 
 const express = require('express')
 const app = express();
 require("dotenv").config()
 var path = require('path');
 
-// dotenv.config({path: './.env' });
 
 require("./db/db");
-
-var User = require('./model/User')
-const  ObjectID = require('mongodb').ObjectId;
-
-var cron = require('node-cron');
-
-const schedule = require('node-schedule');
-
-var request = require('request');
 
 
 const bodyParser = require("body-parser")
@@ -33,11 +22,6 @@ app.use(cors({
 }));
 
 app.use(express.static('public')) 
-
-
-
-
-
 
 
 const SibApiV3Sdk = require('sib-api-v3-sdk');
@@ -61,18 +45,6 @@ apiInstance.sendTransacSms(sendTransacSms).then(function(data) {
 }, function(error) {
   console.error(error);
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 var PORT = process.env.PORT || 4000;
