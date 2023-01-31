@@ -21,6 +21,7 @@
     "nodemon": "^2.0.20",
     "path": "^0.12.7",
     "request": "^2.88.2",
-    "sib-api-v3-sdk": "^8.4.2"
+    "sib-api-v3-sdk": "^8.4.2",
+    "twilio": "^3.84.1"
   }
 }
