@@ -58,7 +58,7 @@ app.post("/send_sms",(req,res) =>{
 
   let {name, date, time, number} = req.body
   client.messages
-  .create({ body: `Dear ${name}, you have been registered with the Kite Workshop on ${date} at ${time} PM. Kindly make your way towards the Kite Workshop area 5 minutes before the session. We look forward to seeing you soon!`, from: "THH", to: `${number}` })
+  .create({ body: `Hi ${name}, you have been registered with the Kite Workshop on ${date} at ${time}. Kindly make your way towards the Kite Workshop area 5 minutes before the session. We look forward to seeing you soon!`, from: "THH", to: `${number}` })
   .then(message => console.log(message.sid))
   .catch(err => console.log(err));
 })
