@@ -57,8 +57,19 @@ const client = require("twilio")(accountSid, authToken);
 app.post("/send_sms",(req,res) =>{
 
   let {name, date, time, number} = req.body
+
+  var format_date = ""
+
+  if (date === "9feb"){
+    format_date = "9 Feb"
+  }
+  else{
+    var dateno = date.slice(0,2)
+    format_date = `${dateno} Feb`
+  }
+
   client.messages
-  .create({ body: `Dear ${name}, you have been registered with the Kite Workshop on ${date} at ${time} PM. Kindly make your way towards the Kite Workshop area 5 minutes before the session. We look forward to seeing you soon!`, from: "THH", to: `${number}` })
+  .create({ body: `Dear ${name}, you have been registered with the Kite Workshop on ${format_date} at ${time} PM. Kindly make your way towards the Kite Workshop area 5 minutes before the session. We look forward to seeing you soon!`, from: "THH", to: `${number}` })
   .then(message => console.log(message.sid))
   .catch(err => console.log(err));
 })
