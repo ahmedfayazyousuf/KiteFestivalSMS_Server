@@ -68,8 +68,14 @@ app.post("/send_sms",(req,res) =>{
     format_date = `${dateno} Feb`
   }
 
+  var day = 'PM'
+
+  if(time === '10:30' || time === '11:30' || time === '11'){
+    day = 'AM'
+  }
+
   client.messages
-  .create({ body: `Hi ${name}, you have been registered for the Kite Workshop on ${format_date} at ${time} PM. Kindly make your way towards the Kite Workshop area five minutes before the session. We look forward to seeing you soon!`, from: "THH", to: `${number}` })
+  .create({ body: `Hi ${name}, you have been registered for the Kite Workshop on ${format_date} at ${time} ${day}. Kindly make your way towards the Kite Workshop area five minutes before the session. We look forward to seeing you soon!`, from: "THH", to: `${number}` })
   .then(message => console.log(message.sid))
   .catch(err => console.log(err));
 })
